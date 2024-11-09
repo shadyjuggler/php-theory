@@ -27,7 +27,7 @@ $message = "Bye";
 
 try {
     $farewell = function($name) {
-        return "$message, $name"; // <= function doesn't inherit parent scope
+        return "$message, $name"; // <= functions doesn't inherit parent scope
     };
     $farewell("alex");
 }
@@ -35,21 +35,23 @@ catch (Exception $e) {
     echo $e;
 }
 
-$farewell = function($name) use ($message) { // <= need to specify external entities for inner function scope
+// so for anon functions (closures) there is a way to handle it 
+$farewell = function($name) use ($message) { // <= need to specify external entity's values for inner function scope
     $message = $message . "!"; // "Bye!" <= withing the function variable is mutable
     return "$message, $name"; 
 };
 
 echo $farewell("alex") . "<br/>";
-echo $message . "<br/>"; // "Bye" <= in global scope is the same
+echo $message . "<br/>"; // "Bye" <= in global scope stayed as was initial
 
 $farewell = function($name) use (&$message) { // <= but if the varibale is passed by reference
-    $message = $message . "!"; // <= this would apply changes for the source varible
+    $message = $message . "!"; // <= this would apply changes for the source variable
     return "$message, $name"; 
 };
 
 echo $farewell("alex") . "<br/>";
-echo $message . "<br/>"; // "Bye" <= in global scope is the same
+echo $message . "<br/>"; // "Bye!" <= now it's changed
+
 
 
 
