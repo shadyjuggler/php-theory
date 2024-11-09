@@ -11,4 +11,5 @@
 // require "./strings/quotes.php";
 // require "./strings/string-manipulation.php";
 // require "./strings/string-search.php";
-require "./strings/string-formatting.php";
+// require "./strings/string-formatting.php";
+require "./strings/string-advanced.php";
