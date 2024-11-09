@@ -1,3 +1,4 @@
 <?php
 
-    echo "test commit";
+// require "./functions/types.php";
+require "./functions/variadic.php";
