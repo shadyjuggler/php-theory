@@ -10,7 +10,7 @@ abstract class OnlinePaymentProcessor implements PaymentProcessor
 {
 
     public function __construct(
-        protected string $apiKey
+        protected readonly string $apiKey
     ) {}
 
     abstract protected function validateApiKey(): bool;
@@ -34,7 +34,7 @@ abstract class OnlinePaymentProcessor implements PaymentProcessor
     }
 }
 
-class StripeProcessor extends OnlinePaymentProcessor
+final class StripeProcessor extends OnlinePaymentProcessor
 {
     protected function validateApiKey(): bool
     {
@@ -51,7 +51,7 @@ class StripeProcessor extends OnlinePaymentProcessor
         return true;
     }
 }
-class PaypalProcessor extends OnlinePaymentProcessor
+final class PaypalProcessor extends OnlinePaymentProcessor
 {
     protected function validateApiKey(): bool
     {
@@ -69,7 +69,7 @@ class PaypalProcessor extends OnlinePaymentProcessor
     }
 }
 
-class CashPaymentProcessor implements PaymentProcessor
+final class CashPaymentProcessor implements PaymentProcessor
 {
     public function processPayment(float $amount): bool
     {
